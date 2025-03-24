@@ -9,7 +9,7 @@ const Login = ({ setToken }) => {
 
   const handleLogin = async () => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/auth/login", form);
+      const { data } = await axios.post("https://map-dashboard-app.onrender.com/api/auth/login", form);
       localStorage.setItem("token", data.token);
       setToken(data.token);
       navigate("/dashboard");
