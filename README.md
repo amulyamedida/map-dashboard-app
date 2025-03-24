@@ -2,7 +2,7 @@
 
 ## **🔗 Step 1: Open the Website**  
 Click on the link below to open the website:  
-🔗 **[Live Website]()**  
+🔗 **[Live Website](https://map-dashboard-app-alpha.vercel.app/)**  
 
 ---
 
