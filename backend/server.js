@@ -1,19 +1,23 @@
-require("dotenv").config(); 
-const mongoose = require("mongoose");
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("./config/db");
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("MongoDB Connected Successfully");
-  } catch (err) {
-    console.error("MongoDB Connection Failed:", err.message);
-    process.exit(1); 
-  }
-};
+const authRoutes = require("./routes/authRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
-connectDB();
+const app = express();
 
-module.exports = mongoose;
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Map Dashboard API!");
+});
+
+
+const PORT = process.env.PORT || 5000; 
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
